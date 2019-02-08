@@ -18,7 +18,8 @@ namespace Marathon.DataAccess
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
         //APIS
-        public List<Run> GetSingle()
+        //GET ALL RUNS
+        public List<Run> GetAllRunTasks()
         {
             using (var connection = new SqlConnection(ConnectionString))
             {

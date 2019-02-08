@@ -18,7 +18,7 @@ namespace Marathon.DataAccess
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
         //APIS
-
+        //GET USER WITH ID # 1
         public List<Users> GetSingle()
         {
             using (var connection = new SqlConnection(ConnectionString))
