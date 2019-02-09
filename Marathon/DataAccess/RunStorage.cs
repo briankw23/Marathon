@@ -40,6 +40,24 @@ namespace Marathon.DataAccess
                 connection.Execute(@"insert into Run(Name, Description, Date, TargetMiles, ActualMiles, Complete) values (@Name, @Description, @Date, @TargetMiles, @ActualMiles, @Complete)", run);
             }
         }
+        public void DeleteRun(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
 
+                connection.Execute(@"delete from Run where Id = @id", new { id });
+            }
+        }
+        public void UpdateRunTask(Run run)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                connection.Execute(@"update run set Name = @Name, Description = @Description, Date = @Date, TargetMiles = @TargetMiles, ActualMiles = @ActualMiles, Complete = @Complete where Id = @id", run);
+            }
+
+        }
     }
 }
