@@ -9,25 +9,23 @@ using System.Threading.Tasks;
 
 namespace Marathon.DataAccess
 {
-    public class UserStorage
+    public class PlanStorage
     {
         private readonly string ConnectionString;
 
-        public UserStorage(IConfiguration config)
+        public PlanStorage(IConfiguration config)
         {
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
         //APIS
-        //GET USER WITH ID # 1
-        public List<Users> GetSingle()
+        //GET ALL Plans
+        public List<Plan> GetAllPlanTasks()
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                var result = connection.Query<Users>(@"select *
-                                                            from Users
-                                                            Where Id = 1");
+                var result = connection.Query<Plan>(@"select * from PlanNew");
 
                 return result.ToList();
             }

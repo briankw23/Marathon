@@ -9,25 +9,23 @@ using System.Threading.Tasks;
 
 namespace Marathon.DataAccess
 {
-    public class UserStorage
+    public class RunStorage
     {
         private readonly string ConnectionString;
 
-        public UserStorage(IConfiguration config)
+        public RunStorage(IConfiguration config)
         {
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
         //APIS
-        //GET USER WITH ID # 1
-        public List<Users> GetSingle()
+        //GET ALL RUNS
+        public List<Run> GetAllRunTasks()
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                var result = connection.Query<Users>(@"select *
-                                                            from Users
-                                                            Where Id = 1");
+                var result = connection.Query<Run>(@"select * from Run");
 
                 return result.ToList();
             }
