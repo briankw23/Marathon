@@ -11,20 +11,20 @@ namespace Marathon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WeightsController : ControllerBase
+    public class PlanController : ControllerBase
     {
-        private readonly WeightStorage _storage;
+        private readonly PlanStorage _storage;
 
-        public WeightsController(IConfiguration config)
+        public PlanController(IConfiguration config)
         {
-            _storage = new WeightStorage(config);
+            _storage = new PlanStorage(config);
         }
 
-        // GET ALL Weights
+        // GET ALL Planner
         [HttpGet]
-        public IActionResult GetAllWeights()
+        public IActionResult GetAllPlans()
         {
-            return Ok(_storage.GetAllWeightsTasks());
+            return Ok(_storage.GetAllPlanTasks());
         }
     }
 }

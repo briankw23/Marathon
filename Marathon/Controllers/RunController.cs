@@ -22,7 +22,7 @@ namespace Marathon.Controllers
 
         // GET ALL RUNS
         [HttpGet]
-        public IActionResult GetTheOnlyUser()
+        public IActionResult GetAllRuns()
         {
             return Ok(_storage.GetAllRunTasks());
         }

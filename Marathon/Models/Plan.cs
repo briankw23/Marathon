@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Marathon.Models
 {
-    public class Planners
+    public class Plan
     {
         public int Id { get; set; }
         public string Name { get; set; }
