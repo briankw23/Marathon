@@ -30,5 +30,16 @@ namespace Marathon.DataAccess
                 return result.ToList();
             }
         }
+
+        public void AddARun(Run run)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                connection.Execute(@"insert into Run(Name, Description, Date, TargetMiles, ActualMiles, Complete) values (@Name, @Description, @Date, @TargetMiles, @ActualMiles, @Complete)", run);
+            }
+        }
+
     }
 }
