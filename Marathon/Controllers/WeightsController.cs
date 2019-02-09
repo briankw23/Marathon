@@ -38,5 +38,11 @@ namespace Marathon.Controllers
 
             _storage.DeleteWeights(id);
         }
+        [HttpPut("{id}")]
+        public void UpdateWeights([FromBody] Weights weights, int id)
+        {
+            weights.Id = id;
+            _storage.UpdateWeightsTask(weights);
+        }
     }
 }

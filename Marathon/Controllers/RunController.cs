@@ -38,5 +38,11 @@ namespace Marathon.Controllers
 
             _storage.DeleteRun(id);
         }
+        [HttpPut("{id}")]
+        public void UpdateRun([FromBody] Run run, int id)
+        {
+            run.Id = id;
+            _storage.UpdateRunTask(run);
+        }
     }
 }

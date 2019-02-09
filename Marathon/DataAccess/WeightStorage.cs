@@ -51,5 +51,17 @@ namespace Marathon.DataAccess
                                         where Id = @id", new { id });
             }
         }
+        public void UpdateWeightsTask(Weights weights)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                connection.Execute(@"update weights set Name = @Name, Description = @Description, Date = @Date, TargetReps = @TargetReps, ActualReps = @ActualReps, Complete = @Complete where Id = @id", weights);
+            }
+
+        }
     }
+
 }
+
