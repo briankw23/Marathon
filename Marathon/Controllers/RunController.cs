@@ -32,5 +32,11 @@ namespace Marathon.Controllers
         {
             _storage.AddARun(run);
         }
+        [HttpDelete("{id}")]
+        public void DeleteRunTask(int id)
+        {
+
+            _storage.DeleteRun(id);
+        }
     }
 }

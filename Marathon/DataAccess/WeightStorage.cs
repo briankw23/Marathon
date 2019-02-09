@@ -39,5 +39,17 @@ namespace Marathon.DataAccess
                 connection.Execute(@"insert into Weights(Name, Description, Date, TargetReps, ActualReps, Complete) values (@Name, @Description, @Date, @TargetReps, @ActualReps, @Complete)", weights);
             }
         }
+
+        public void DeleteWeights(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                connection.Execute(@"delete
+                                        from Weights
+                                        where Id = @id", new { id });
+            }
+        }
     }
 }

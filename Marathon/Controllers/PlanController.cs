@@ -28,5 +28,10 @@ namespace Marathon.Controllers
             return Ok(_storage.GetAllPlanTasks());
         }
         //Post A Plan
+        [HttpPost]
+        public void AddPlan([FromBody] Plan plan)
+        {
+            _storage.AddAPlan(plan);
+        }
     }
 }

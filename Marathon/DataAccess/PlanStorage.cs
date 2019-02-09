@@ -31,19 +31,13 @@ namespace Marathon.DataAccess
             }
         }
         //POST
-        public bool PostPlan(int Id)
+        public void AddAPlan(Plan plan)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                int result = connection.Execute(@"insert into PlanNew(Name,UserId) values (Name, @UserId = id)", new { id = Id });
-
-                if (result > 0)
-                {
-                    return true;
-                }
-                return false;
+                connection.Execute(@"insert into PlanNew(Name,UserId) values (@Name, @UserId)", plan);
             }
         }
     }
