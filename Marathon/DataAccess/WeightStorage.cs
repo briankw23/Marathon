@@ -30,5 +30,14 @@ namespace Marathon.DataAccess
                 return result.ToList();
             }
         }
+        public void AddAWeights(Weights weights)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                connection.Execute(@"insert into Weights(Name, Description, Date, TargetReps, ActualReps, Complete) values (@Name, @Description, @Date, @TargetReps, @ActualReps, @Complete)", weights);
+            }
+        }
     }
 }

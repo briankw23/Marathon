@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Marathon.DataAccess;
+using Marathon.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,11 @@ namespace Marathon.Controllers
         public IActionResult GetAllWeights()
         {
             return Ok(_storage.GetAllWeightsTasks());
+        }
+        [HttpPost]
+        public void AddWeightsTask([FromBody] Weights weights)
+        {
+            _storage.AddAWeights(weights);
         }
     }
 }
