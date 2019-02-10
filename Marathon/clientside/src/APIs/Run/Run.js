@@ -13,4 +13,16 @@ const getRequest = () => {
     });
 };
 
-export default { getRequest };
+const deleteRequest = (id) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .delete(`api/run/${id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+};
+export default { getRequest, deleteRequest};

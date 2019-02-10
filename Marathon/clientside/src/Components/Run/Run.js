@@ -1,11 +1,13 @@
 ﻿import React from 'react';
+//import RunRequest from '../../APIs/Run/Run';
+import { Link } from 'react-router-dom';
 
 class Run extends React.Component {
-
     render() {
         const { details } = this.props;
         return (
             <div className='Run'>
+                <Link to={`singleRun/${details.id}`}>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{details.name}</h3>
@@ -26,8 +28,9 @@ class Run extends React.Component {
                         <div>
                             Actual: {details.actualMiles}
                         </div>
+                       </div>
                     </div>
-                </div>
+                </Link>
             </div>
         );
     };
