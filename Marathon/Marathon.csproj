@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="clientside\src\APIs\Weights\" />
-    <Folder Include="clientside\src\APIs\Run\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
