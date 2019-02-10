@@ -13,6 +13,19 @@ const getRequest = () => {
     });
 };
 
+const getSingleRequest = (id) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .get(`api/run/${id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+};
+
 const deleteRequest = (id) => {
     return new Promise((resolve, reject) => {
         axios
@@ -25,4 +38,4 @@ const deleteRequest = (id) => {
             })
     })
 };
-export default { getRequest, deleteRequest};
+export default { getRequest, deleteRequest, getSingleRequest};
