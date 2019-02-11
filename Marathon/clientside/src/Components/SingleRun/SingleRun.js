@@ -25,6 +25,10 @@ class SingleRun extends React.Component {
             });
     }
 
+    redirectToTarget = () => {
+        this.props.history.push(`/`)
+    }
+
     formFieldStateString = (name, e) => {
         const currentTask = { ...this.state.task };
         currentTask[name] = e.target.value;
@@ -51,6 +55,18 @@ class SingleRun extends React.Component {
     }
     actualChange = (e) => {
         this.formFieldStateNumber('actualMiles', e);
+    }
+
+    delete = (e, id) => {
+        e.preventDefault();
+        RunRequest
+            .deleteRequest(id)
+            .then( x => {
+                this.redirectToTarget();
+            })
+            .catch(err => {
+                console.error(err, 'error deleting run task');
+            });
     }
 
     render() {
@@ -109,10 +125,10 @@ class SingleRun extends React.Component {
                                     onChange={this.actualChange}
                                 />
                             </div>
-                            <button type="submit" className="btn btn-success">
+                            <button className="btn btn-success">
                                 Update Task
                             </button>
-                            <button type="submit" className="btn btn-warning">
+                            <button className="btn btn-warning" onClick={(e) => this.delete(e, this.state.task.id)}>
                                 Delete Task
                             </button>
                         </form>
