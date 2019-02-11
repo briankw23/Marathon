@@ -33,7 +33,7 @@ namespace Marathon.Controllers
             return Ok(_storage.SingleRun(id));
         }
         [HttpPost]
-        public void AddRunTask([FromBody] Run run)
+        public void AddRunTask(Run run)
         {
             _storage.AddARun(run);
         }

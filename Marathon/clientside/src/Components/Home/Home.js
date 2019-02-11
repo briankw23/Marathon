@@ -5,7 +5,8 @@ import Weights from '../Weights/Weights';
 import UserRequest from '../../APIs/User/User';
 import RunRequest from '../../APIs/Run/Run';
 import WeightsRequest from '../../APIs/Weights/Weights'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Dashboard from '../Dashboard/Dashboard';
 
 class Home extends React.Component {
     state = {
@@ -72,7 +73,6 @@ class Home extends React.Component {
             );
         });
 
-
         const weightsComponent = this.state.weights.map((w) => {
             return (
                 <Weights
@@ -88,6 +88,7 @@ class Home extends React.Component {
                 <div className='col-xs-4 col-md-4'>
                     {userComponent}
                     <div>Dashboard</div>
+                    <Dashboard/>
                 </div>
                 <div className='col-xs-4 col-md-4'>
                     <h1>Run <Link to={`/Create`}><span className='glyphicon glyphicon-plus'></span></Link></h1>
