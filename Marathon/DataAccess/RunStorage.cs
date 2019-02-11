@@ -31,6 +31,16 @@ namespace Marathon.DataAccess
             }
         }
 
+        public List<Run> SingleRun(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                var result = connection.Query<Run>(@"select * from Run where Run.Id = @id", new { id });
+                return result.ToList();
+            }
+        }
+
         public void AddARun(Run run)
         {
             using (var connection = new SqlConnection(ConnectionString))

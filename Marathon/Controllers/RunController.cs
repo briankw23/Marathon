@@ -27,6 +27,11 @@ namespace Marathon.Controllers
         {
             return Ok(_storage.GetAllRunTasks());
         }
+        [HttpGet("{id}")]
+        public IActionResult GetSingleRun(int id)
+        {
+            return Ok(_storage.SingleRun(id));
+        }
         [HttpPost]
         public void AddRunTask([FromBody] Run run)
         {
