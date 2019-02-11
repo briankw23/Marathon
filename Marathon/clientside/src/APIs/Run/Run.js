@@ -55,7 +55,7 @@ const updateRequest = (id, update) => {
 const postRequest = (newTask) => {
     return new Promise((resolve, reject) => {
         axios
-            .post(`api/run`, newTask)
+            .post(`https://localhost:44381/api/run`, newTask)
             .then((res) => {
                 resolve(res);
             })

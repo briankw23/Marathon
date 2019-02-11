@@ -5,11 +5,11 @@ import RunRequest from '../../APIs/Run/Run';
 const defaultTask = {
     name: '',
     description: '',
-    plannerId: '',
+    plannerId: 1,
     date: '',
     targetMiles: '',
     actualMiles: '',
-    complete: false
+    complete: 0
 };
 
 
