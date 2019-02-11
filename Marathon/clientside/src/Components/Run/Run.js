@@ -10,10 +10,11 @@ class Run extends React.Component {
                 <Link to={`/Run/${details.id}`}>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{details.name}</h3>
+                        <h3 class="panel-title">{details.name}
                         <div>
-                            Done: {details.complete}<span className='glyphicon glyphicon-remove-circle'></span><span className='glyphicon glyphicon-ok-circle'></span>
-                        </div>
+                                {details.complete ? <span className='glyphicon glyphicon-ok-circle'></span> : <span className='glyphicon glyphicon-remove-circle'></span>}
+                                </div>
+                        </h3>
                     </div>
                     <div class="panel-body">
                         <div>
