@@ -68,6 +68,17 @@ class SingleRun extends React.Component {
                 console.error(err, 'error deleting run task');
             });
     }
+    update = (e, id, updated ) => {
+        e.preventDefault();
+        RunRequest
+            .updateRequest(id, updated)
+            .then(x => {
+                this.redirectToTarget();
+            })
+            .catch(err => {
+                console.error(err, 'error updating run task');
+            });
+    }
 
     render() {
         return (
@@ -125,7 +136,7 @@ class SingleRun extends React.Component {
                                     onChange={this.actualChange}
                                 />
                             </div>
-                            <button className="btn btn-success">
+                            <button className="btn btn-success" onClick={(e) => this.update(e, this.state.task.id, this.state.task )}>
                                 Update Task
                             </button>
                             <button className="btn btn-warning" onClick={(e) => this.delete(e, this.state.task.id)}>
