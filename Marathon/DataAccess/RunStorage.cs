@@ -31,7 +31,7 @@ namespace Marathon.DataAccess
             }
         }
 
-        public List<Run> GetSingleRun(int id)
+        public List<Run> SingleRun(int id)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {

@@ -7,7 +7,7 @@ class Run extends React.Component {
         const { details } = this.props;
         return (
             <div className='Run'>
-                <Link to={`singleRun/${details.id}`}>
+                <Link to={`/Run/${details.id}`}>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{details.name}</h3>

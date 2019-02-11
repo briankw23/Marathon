@@ -16,7 +16,7 @@ const getRequest = () => {
 const getSingleRequest = (id) => {
     return new Promise((resolve, reject) => {
         axios
-            .get(`api/run/${id}`)
+            .get(`https://localhost:44381/api/run/${id}`)
             .then(res => {
                 resolve(res.data);
             })

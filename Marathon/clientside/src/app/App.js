@@ -19,7 +19,7 @@ class App extends Component {
                                 component={Home}
                             />
                             <Route
-                                path='/singleRun/:id'
+                                path='/Run/:id'
                                 component={SingleRun}
                             />
                         </Switch>
