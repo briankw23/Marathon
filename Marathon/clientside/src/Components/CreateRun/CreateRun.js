@@ -1,27 +1,34 @@
 ﻿import React from 'react';
-import RunRequest from '../../APIs/Run/Run'
+import RunRequest from '../../APIs/Run/Run';
+
 
 const defaultTask = {
     name: '',
     description: '',
+    plannerId: '',
     date: '',
-    actualMiles: '',
     targetMiles: '',
-    complete: 0,
+    actualMiles: '',
+    complete: false
 };
 
-class SingleRun extends React.Component {
+
+
+class CreateRun extends React.Component {
+
     state = {
         task: defaultTask,
     }
-    componentDidMount() {
+
+    create = (create) => {
+        console.log(create);
         RunRequest
-            .getSingleRequest(this.props.match.params.id * 1)
-            .then(task => {
-                this.setState({ task: task[0] });
+            .postRequest(create)
+            .then(x => {
+                //this.redirectToTarget();
             })
             .catch(err => {
-                console.error(err, 'error getting run task');
+                console.error(err, 'error posting run task');
             });
     }
 
@@ -57,32 +64,9 @@ class SingleRun extends React.Component {
         this.formFieldStateNumber('actualMiles', e);
     }
 
-    delete = (e, id) => {
-        e.preventDefault();
-        RunRequest
-            .deleteRequest(id)
-            .then( x => {
-                this.redirectToTarget();
-            })
-            .catch(err => {
-                console.error(err, 'error deleting run task');
-            });
-    }
-    update = (e, id, updated ) => {
-        e.preventDefault();
-        RunRequest
-            .updateRequest(id, updated)
-            .then(x => {
-                this.redirectToTarget();
-            })
-            .catch(err => {
-                console.error(err, 'error updating run task');
-            });
-    }
-
     render() {
         return (
-            <div className='SingleRun'>
+            <div className='CreateRun'>
                 <div className="panel panel-default">
                     <div className="panel-body">
                         <form action="">
@@ -93,7 +77,7 @@ class SingleRun extends React.Component {
                                     className="form-control"
                                     id="name"
                                     placeholder="Task Name"
-                                    value={this.state.task.name}
+                                    //value={this.state.task.name}
                                     onChange={this.nameChange}
                                 />
                             </div>
@@ -102,8 +86,8 @@ class SingleRun extends React.Component {
                                 <input type="text"
                                     className="form-control"
                                     id="description"
-                                    placeholder="Image URL"
-                                    value={this.state.task.description}
+                                    placeholder="I am ..."
+                                    //value={this.state.task.description}
                                     onChange={this.descriptionChange}
                                 />
                             </div>
@@ -112,35 +96,32 @@ class SingleRun extends React.Component {
                                 <input type="date"
                                     className="form-control"
                                     id="date"
-                                    value={this.state.task.date}
+                                    //value={this.state.task.date}
                                     onChange={this.dateChange}
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Target Miles</label>
+                                <label>Target</label>
                                 <input type="number"
                                     className="form-control"
                                     id="target"
-                                    placeholder="0 to 100"
-                                    value={this.state.task.targetMiles}
+                                    placeholder="0"
+                                    //value={this.state.task.targetMiles}
                                     onChange={this.targetChange}
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Actual Miles</label>
+                                <label>Actual</label>
                                 <input type="number"
                                     className="form-control"
                                     id="actual"
-                                    placeholder="0 to 100"
-                                    value={this.state.task.actualMiles}
+                                    placeholder="0"
+                                    //value={this.state.task.actualMiles}
                                     onChange={this.actualChange}
                                 />
                             </div>
-                            <button className="btn btn-success" onClick={(e) => this.update(e, this.state.task.id, this.state.task )}>
-                                Update Task
-                            </button>
-                            <button className="btn btn-warning" onClick={(e) => this.delete(e, this.state.task.id)}>
-                                Delete Task
+                            <button type="button" className="btn btn-success" onClick={(e) => this.create(this.state.task)}>
+                                Submit Task
                             </button>
                         </form>
                     </div>
@@ -150,4 +131,4 @@ class SingleRun extends React.Component {
     };
 }
 
-export default SingleRun;
+export default CreateRun;

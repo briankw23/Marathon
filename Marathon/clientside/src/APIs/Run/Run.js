@@ -51,4 +51,19 @@ const updateRequest = (id, update) => {
             });
     });
 };
-export default { getRequest, deleteRequest, getSingleRequest, updateRequest};
+
+const postRequest = (newTask) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .post(`api/run`, newTask)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
+    });
+};
+
+
+export default { getRequest, deleteRequest, getSingleRequest, updateRequest, postRequest};
