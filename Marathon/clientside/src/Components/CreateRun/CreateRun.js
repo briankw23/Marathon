@@ -25,7 +25,7 @@ class CreateRun extends React.Component {
         RunRequest
             .postRequest(create)
             .then(x => {
-                //this.redirectToTarget();
+                this.redirectToTarget();
             })
             .catch(err => {
                 console.error(err, 'error posting run task');

@@ -15,6 +15,9 @@ class Home extends React.Component {
         weights: [],
         totalRunTask: 0,
         completedRunTask: 0,
+        actualMiles: 0,
+        targetMiles: 0,
+   
     }
 
     componentDidMount() {
@@ -36,17 +39,24 @@ class Home extends React.Component {
         const runs = this.state.runs;
         let total = this.state.runs.length;
         let count = 0;
+        let actual = 0;
+        let target = 0;
 
         runs.forEach((x) => {
             if (x.complete) {
-                count += 1
+                count += 1;
+                actual += x.actualMiles * 1;
+                target += x.targetMiles * 1;
+
             }
         })
 
         this.setState({ completedRunTask: count });
         this.setState({ totalRunTask: total });
-        console.log(count);
-        console.log(total);
+        this.setState({ actualMiles: actual });
+        this.setState({ targetMiles: target });
+        console.log(target);
+        console.log(actual);
     }
 
     Runs = () => {
@@ -103,13 +113,37 @@ class Home extends React.Component {
             );
         });
 
+        const totalTask = parseInt((this.state.completedRunTask * 1 / this.state.totalRunTask * 1)*100);
+        const totalTaskwidth = {
+            width: `${totalTask}%`
+        }
+        const totalMiles = parseInt((this.state.actualMiles * 1 / this.state.targetMiles * 1) * 100);
+        const totalMileswidth = {
+            width: `${totalMiles}%`
+        }
+
         return (
             <div className='Home'>
                 <h1>Home</h1>
                 <div className='col-xs-4 col-md-4'>
                     {userComponent}
+
                     <div>Dashboard</div>
-                    <Dashboard/>
+                    
+                    <h3>Total Run Task Complete</h3>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow={totalTask} aria-valuemin="0" aria-valuemax="100" style={totalTaskwidth}>
+                            {totalTask}%
+                        </div>
+                    </div>
+
+                    <h3>Total Miles Ratio</h3>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow={totalMiles} aria-valuemin="0" aria-valuemax="100" style={totalMileswidth}>
+                            {totalMiles}%
+                        </div>
+                    </div>
+
                 </div>
                 <div className='col-xs-4 col-md-4'>
                     <h1>Run <Link to={`/Create`}><span className='glyphicon glyphicon-plus'></span></Link></h1>
