@@ -13,6 +13,8 @@ class Home extends React.Component {
         user: [],
         runs: [],
         weights: [],
+        totalRunTask: 0,
+        completedRunTask: 0,
     }
 
     componentDidMount() {
@@ -23,10 +25,28 @@ class Home extends React.Component {
                 console.log(this.state.user);
                 this.Runs();
                 this.Weights();
+
             })
             .catch(err => {
                 console.error(err, 'error getting user');
             });
+    }
+
+    DashboardRunComplete = () => {
+        const runs = this.state.runs;
+        let total = this.state.runs.length;
+        let count = 0;
+
+        runs.forEach((x) => {
+            if (x.complete) {
+                count += 1
+            }
+        })
+
+        this.setState({ completedRunTask: count });
+        this.setState({ totalRunTask: total });
+        console.log(count);
+        console.log(total);
     }
 
     Runs = () => {
@@ -35,6 +55,7 @@ class Home extends React.Component {
             .then(runs => {
                 this.setState({ runs })
                 console.log(this.state.runs);
+                this.DashboardRunComplete();
             })
             .catch(err => {
                 console.error(err, 'error getting runs');
